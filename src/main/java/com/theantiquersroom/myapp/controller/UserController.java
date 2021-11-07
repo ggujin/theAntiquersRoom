@@ -4,11 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.theantiquersroom.myapp.domain.UserDTO;
@@ -18,15 +18,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 
+
 @Log4j2
 @NoArgsConstructor
 
 @RequestMapping("/users")
-@Controller
+@RestController
 public class UserController {
 
     @Setter(onMethod_= {@Autowired})
-    private UserService service;
+    private UserService userService;
 
     @GetMapping("/register")
     public void register() {	//회원가입 화면 요청
@@ -90,7 +91,7 @@ public class UserController {
         log.debug("login({}, {}) invoked.", userId, password);
         HttpSession session = request.getSession();
         
-        boolean isUser=this.service.login(userId, password);
+        boolean isUser=this.userService.login(userId, password);
         
         session.setAttribute("userId", userId);
 //        if(isUser) {

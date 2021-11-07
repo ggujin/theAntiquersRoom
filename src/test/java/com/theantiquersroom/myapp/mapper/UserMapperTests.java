@@ -1,6 +1,8 @@
 package com.theantiquersroom.myapp.mapper;
 
 
+import com.theantiquersroom.myapp.domain.UserDTO;
+import com.theantiquersroom.myapp.domain.UserVO;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
@@ -11,6 +13,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 
 @Log4j2

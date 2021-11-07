@@ -16,15 +16,17 @@ import org.springframework.stereotype.Service;
 @Log4j2
 
 @Service
-public class UserServiceImpl implements UserService, InitializingBean, DisposableBean{
+public class UserServiceImpl implements UserService{
 
-    private UserMapper mapper;
+    private final UserMapper userMapper;
 
 
     @Override
-    public boolean registerUsers(UserVO user) {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean registerUser(UserDTO user) {
+
+    	int affectedRows = this.userMapper.insertUser(user);
+
+        return affectedRows > 0;
     }
 
     @Override
@@ -94,18 +96,5 @@ public class UserServiceImpl implements UserService, InitializingBean, Disposabl
 		// TODO Auto-generated method stub
 		return false;
 	}
-    
-//---------------------------------------------------//
-    @Override
-    public void destroy() throws Exception {
-    	// TODO Auto-generated method stub
-    	
-    }
-    
-    @Override
-    public void afterPropertiesSet() throws Exception {
-    	// TODO Auto-generated method stub
-    	
-    }
 
 } // end class
